@@ -3,14 +3,17 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = config
     body()
-    stage 'checkout'
     node {
-        checkout scm
-        stage 'main'
-        docker.image(config.environment).inside {
-            sh config.mainScript
+        stage('checkout') {
+            checkout scm
         }
-        stage 'post'
-        sh config.postScript
+        stage('main') {
+            docker.image(config.environment).inside {
+                sh config.mainScript
+            }
+        }
+        stage('post') {
+            sh config.postScript
+        }
     }
 }

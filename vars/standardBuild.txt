@@ -1,0 +1,1 @@
+Runs a standard build. Set environment, mainScript, postScript.

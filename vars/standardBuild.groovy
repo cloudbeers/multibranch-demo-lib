@@ -4,15 +4,15 @@ def call(body) {
     body.delegate = config
     body()
     node {
-        stage('checkout') {
+        stage('Checkout') {
             checkout scm
         }
-        stage('main') {
+        stage('Main') {
             docker.image(config.environment).inside {
                 sh config.mainScript
             }
         }
-        stage('post') {
+        stage('Post') {
             sh config.postScript
         }
     }

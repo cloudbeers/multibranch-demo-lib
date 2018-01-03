@@ -1,8 +1,4 @@
-def call(body) {
-    def config = [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = config
-    body()
+def call(Map config) {
     node {
         stage('Checkout') {
             checkout scm
